@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 // RHL only for front end development
 import { hot } from 'react-hot-loader';
-import {BrowserRouter, Route} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './components/Home.jsx'
+import Game from './components/Game'
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Home />
-      </div>
+      <BrowserRouter>
+        <div>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/game' component={Game} />} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     )
   }
 }

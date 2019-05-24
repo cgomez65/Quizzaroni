@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
-
+import Game from './Game.jsx'
 
 
 class Quiz extends Component {
@@ -8,12 +8,12 @@ class Quiz extends Component {
   render(){
     return(
       
-      <Router>
-      <div>
-        <Link to='./Games.jsx'><button className='btn'>Play</button></Link>
-        <button className='btn' onClick= {console.log('these are the high scores')}>High Scores</button>
+      <div className='conatiner'>
+        <div id ='home' className='flex-center flex-column'>
+           <button className='btn'><Link to="/game">PLAY</Link></button>
+           <button className='btn'><Link to="/highscores">Highscrores</Link></button>
+        </div>
       </div>
-      </Router>
      
     )
   }
