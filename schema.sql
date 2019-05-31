@@ -1,0 +1,13 @@
+DROP DATABASE IF EXISTS quiz;
+
+CREATE DATABASE quiz;
+
+USE quiz;
+
+CREATE TABLE QUESTIONs (
+  id int NOT NULL AUTO_INCREMENT,
+  question varchar(1000) NOT NULL,
+  PRIMARY KEY (ID)
+);
+
+INSERT INTO MEME (question) VALUES 
