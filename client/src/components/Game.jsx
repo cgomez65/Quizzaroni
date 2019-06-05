@@ -12,24 +12,42 @@ class Game extends Component {
       index: 0,
       data: questions,
       isAnswered: false,
-      score: 0,
+      score: 0 ,
       showPopup: false
     }
     console.log(this.state.data.questions)
      this.handleAnswer = this.handleAnswer.bind(this)
-     this.togglePopup = this.togglePopup.bind(this)
+     this.nextQuestion = this.nextQuestion.bind(this)
+     
   }
 
-
-  togglePopup() {
-    this.handleAnswer(e)
+  nextQuestion(e){
+    let index = this.state.index
+    let incorrect=0;
+    let element = e.currentTarget;
+    element.classList.remove('incorrect');
+    if(this.state.isAnswered){
+      this.setState({
+        index: index===3?0:index+1,
+        score: this.state.score+10
+      })
+    } else {
+      incorrect++
+    }
     this.setState({
-      showPopup: !this.state.showPopup
-    });
+      isAnswered: false
+    })
   }
+
+
+  // togglePopup() {
+  //   this.handleAnswer(e)
+  //   this.setState({
+  //     showPopup: !this.state.showPopup
+  //   });
+  // }
 
   handleAnswer(e) {
-    let { isAnswered } = this.props
     let element = e.currentTarget;
     let index = this.state.index
     let answer = this.state.data.questions[index].answer
@@ -37,17 +55,16 @@ class Game extends Component {
     let wrong = 0
 
     if(answer === correctAnswer){
+      element.classList.add('correct');
       this.setState({
-        isAnswered: true,
-        index: index===2?0:index+1
+        isAnswered: true
       })
-
-      console.log(this.state.index+"index")
       alert('Correct!')
 
     } else {
         alert('Wrong')   
         wrong++  
+        element.classList.add('incorrect');
     }
   }
   
@@ -57,17 +74,11 @@ class Game extends Component {
       
       <div id = 'answers' className='container'>
 
-        {this.state.showPopup ? 
-          <Popup
-            text='Close Me'
-            closePopup={this.togglePopup.bind(this)}
-          />
-          : null
-        }
+        
         <div id='game' className='justify-center flex-column'>
           <h2 id = 'question' >{ this.state.data.questions[this.state.index].question }</h2>
           <div  className='choice-container'>
-            <p className='choice-prefix' data-id = '1' style= {{backgroundColor: '#28a745'}} onClick={ this.handleAnswer }>A</p>
+            <p className='choice-prefix' data-id = '1' onClick={ this.handleAnswer }>A</p>
             <p id='choices' className='choice-text' >{ this.state.data.questions[this.state.index].choice1 }</p>
           </div>
           <div  className='choice-container'>
@@ -79,8 +90,14 @@ class Game extends Component {
             <p id='choices' className='choice-text' >{ this.state.data.questions[this.state.index].choice3 }</p>
           </div>
           <div  className='choice-container'>
-            <p className='choice-prefix' data-id = '4' onClick={ this.handleAnswer }>D</p>
+            <p className='choice-prefix' data-id = '4' 
+            onClick={ this.handleAnswer }>D</p>
             <p id='choices' className='choice-text' >{ this.state.data.questions[this.state.index].choice4 }</p>
+          </div>
+          <div >
+            <br></br>
+            <button className='next-question' class='next-question-prefix' onClick={ this.nextQuestion } >NEXT</button>
+            <h2>score: { this.state.score }</h2>
           </div>
         </div>
       </div>

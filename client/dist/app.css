@@ -111,8 +111,18 @@ h3 {
   background-color: #56a5eb;
   color: white;
 }
+
 .choice-text {
   padding: 1.5rem
+}
+.next-question-prefix {
+  padding: 1.5rem 7.5rem;
+  background-color: #56a5eb;
+  color: white;
+}
+.next-question:hover {
+    cursor: pointer;
+    box-shadow: 0 0.4rem 1.4rem 0 rgba(86, 125, 235, 0.5);
 }
 
 /* Correct and Incorrect choices */

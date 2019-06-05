@@ -23,5 +23,13 @@ module.exports.questions = [
     choice3: "msg('Hello World');",
     choice4: "alert('Hello World');",
     answer: 4
+  },
+  {
+    question: "What is ReactJS?",
+    choice1: "A Library",
+    choice2: "A programming language",
+    choice3: "An open-source JavaScript frameware",
+    choice4: "React Java script",
+    answer: 3
   }
 ];
