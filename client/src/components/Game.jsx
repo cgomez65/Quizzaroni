@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
 import questions from '../../../database/data'
-
+import End from '../components/End'
 
 
 class Game extends Component {
@@ -12,26 +12,28 @@ class Game extends Component {
       data: questions,
       isAnswered: false,
       score: 0 ,
-      showPopup: false,
-      question: 1
+      question: 1,
     }
     console.log(this.state.data.questions)
      this.handleAnswer = this.handleAnswer.bind(this)
      this.nextQuestion = this.nextQuestion.bind(this)
-     
+  }
+
+  handleEnd(){
+
   }
 
   nextQuestion(e){
     let index = this.state.index
     let incorrect = 0;
     let element = document.getElementsByClassName('choice-container')
-    
 
     if(this.state.isAnswered){
       
       this.setState({
         index: index===20?0:index+1,
-        score: this.state.score+10
+        score: this.state.score+10,
+        question: this.state.question+1
       })
     } else {
       incorrect++
@@ -82,10 +84,10 @@ class Game extends Component {
  
   render(){
     return (
-      
       <div id = 'answers' className='container'>
+      
 
-        
+       
         <div id='game' className='justify-center flex-column'>
           <div id='hud'>
             <div id='hud-item'>
@@ -127,7 +129,7 @@ class Game extends Component {
           <div >
             <br></br>
             <button className='next-question' class='next-question-prefix' onClick={ this.nextQuestion } >NEXT</button>
-            
+            <button className='next-question' class='next-question-prefix' onClick={ this.handleEnd } ><Link to='/end'>FINISH</Link></button>
           </div>
         </div>
       </div>

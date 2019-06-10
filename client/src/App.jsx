@@ -5,7 +5,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './components/Home.jsx'
 import Game from './components/Game.jsx'
 import highscores from './components/Highscores.jsx'
-
+import End from './components/End'
 
 class App extends Component {
   render() {
@@ -16,6 +16,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/game' component={Game} />
             <Route exact path='/highscores' component={highscores} />
+            <Route exact path='/end' component={End} />
           </Switch>
         </div>
       </BrowserRouter>
