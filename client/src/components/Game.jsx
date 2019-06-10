@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom'
 import questions from '../../../database/data'
-import popup from './Popup'
 
 
 
@@ -13,7 +12,8 @@ class Game extends Component {
       data: questions,
       isAnswered: false,
       score: 0 ,
-      showPopup: false
+      showPopup: false,
+      question: 1
     }
     console.log(this.state.data.questions)
      this.handleAnswer = this.handleAnswer.bind(this)
@@ -23,12 +23,14 @@ class Game extends Component {
 
   nextQuestion(e){
     let index = this.state.index
-    let incorrect=0;
-    let element = e.currentTarget;
-    element.classList.remove('incorrect');
+    let incorrect = 0;
+    let element = document.getElementsByClassName('choice-container')
+    
+
     if(this.state.isAnswered){
+      
       this.setState({
-        index: index===3?0:index+1,
+        index: index===20?0:index+1,
         score: this.state.score+10
       })
     } else {
@@ -53,19 +55,28 @@ class Game extends Component {
     let answer = this.state.data.questions[index].answer
     const correctAnswer = Number(element.dataset.id)
     let wrong = 0
-
+    
     if(answer === correctAnswer){
-      element.classList.add('correct');
+      element.parentElement.classList.add('correct');
       this.setState({
         isAnswered: true
       })
-      alert('Correct!')
+      setTimeout(() => {
+        element.parentElement.classList.remove('correct')
+      }, 2000);
 
     } else {
-        alert('Wrong')   
+      
+      element.parentElement.classList.add('incorrect')
+        // alert('Wrong')   
         wrong++  
-        element.classList.add('incorrect');
     }
+    
+    
+    setTimeout(() => {
+      element.parentElement.classList.remove('incorrect')
+    }, 2000);
+    
   }
   
  
@@ -76,6 +87,25 @@ class Game extends Component {
 
         
         <div id='game' className='justify-center flex-column'>
+          <div id='hud'>
+            <div id='hud-item'>
+              <p className="hud-prefix">
+                question
+              </p>
+              <h1 className='hud-main-text' id="questionCounter">
+                { this.state.question}/20
+              </h1>
+            </div>
+            <div id="hud-item">
+              <p className="hud-prefix">
+                score
+              </p>
+              
+              <h1 class="hud-main-text">
+                { this.state.score }
+              </h1>
+            </div>
+          </div>
           <h2 id = 'question' >{ this.state.data.questions[this.state.index].question }</h2>
           <div  className='choice-container'>
             <p className='choice-prefix' data-id = '1' onClick={ this.handleAnswer }>A</p>
@@ -97,7 +127,7 @@ class Game extends Component {
           <div >
             <br></br>
             <button className='next-question' class='next-question-prefix' onClick={ this.nextQuestion } >NEXT</button>
-            <h2>score: { this.state.score }</h2>
+            
           </div>
         </div>
       </div>

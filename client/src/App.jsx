@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './components/Home.jsx'
 import Game from './components/Game.jsx'
+import highscores from './components/Highscores.jsx'
 
 
 class App extends Component {
@@ -13,7 +14,8 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/game' component={Game} />} />
+            <Route exact path='/game' component={Game} />
+            <Route exact path='/highscores' component={highscores} />
           </Switch>
         </div>
       </BrowserRouter>
