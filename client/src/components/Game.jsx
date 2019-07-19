@@ -31,7 +31,7 @@ class Game extends Component {
     if(this.state.isAnswered){
       
       this.setState({
-        index: index===20?0:index+1,
+        index: index+1,
         score: this.state.score+10,
         question: this.state.question+1
       })
@@ -43,13 +43,6 @@ class Game extends Component {
     })
   }
 
-
-  // togglePopup() {
-  //   this.handleAnswer(e)
-  //   this.setState({
-  //     showPopup: !this.state.showPopup
-  //   });
-  // }
 
   handleAnswer(e) {
     let element = e.currentTarget;
@@ -65,10 +58,12 @@ class Game extends Component {
       })
       setTimeout(() => {
         element.parentElement.classList.remove('correct')
-      }, 2000);
+      }, 1000);
 
     } else {
-      
+      this.setState({
+        score: this.state.score-10
+      })
       element.parentElement.classList.add('incorrect')
         // alert('Wrong')   
         wrong++  
@@ -77,7 +72,7 @@ class Game extends Component {
     
     setTimeout(() => {
       element.parentElement.classList.remove('incorrect')
-    }, 2000);
+    }, 1000);
     
   }
   
@@ -95,7 +90,7 @@ class Game extends Component {
                 question
               </p>
               <h1 className='hud-main-text' id="questionCounter">
-                { this.state.question}/20
+                { this.state.question }/15
               </h1>
             </div>
             <div id="hud-item">

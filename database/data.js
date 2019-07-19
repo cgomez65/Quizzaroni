@@ -8,8 +8,7 @@ module.exports.questions = [
     answer: 1
   },
   {
-    question:
-      "What is the correct syntax for referring to an external script called 'xxx.js'?",
+    question:"What is the correct syntax for referring to an external script called 'xxx.js'?",
     choice1: "<script href='xxx.js'>",
     choice2: "<script name='xxx.js'>",
     choice3: "<script src='xxx.js'>",
@@ -17,7 +16,7 @@ module.exports.questions = [
     answer: 3
   },
   {
-    question: " How do you write 'Hello World' in an alert box?",
+    question: "How do you write 'Hello World' in an alert box?",
     choice1: "msgBox('Hello World');",
     choice2: "alertBox('Hello World');",
     choice3: "msg('Hello World');",
@@ -40,7 +39,6 @@ module.exports.questions = [
     choice4: "setState()",
     answer: 4
   },
-  ,
   {
     question: "How do you access a function fetch() from a h1 element in JSX?",
     choice1: "<h1>{fetch()}</h1>",
